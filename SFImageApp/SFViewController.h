@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SFViewController : UIViewController
+@interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+
+- (IBAction)showUIActionSheet:(id)sender;
 
 @end
