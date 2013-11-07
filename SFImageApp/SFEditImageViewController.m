@@ -26,6 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (self.basicImage)
+    {
+        [self.editImage setImage:self.basicImage];
+    }
 	// Do any additional setup after loading the view.
 }
 

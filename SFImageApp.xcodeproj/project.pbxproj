@@ -13,7 +13,6 @@
 		891A5ACF1829CABB00A0B8D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 891A5ACD1829CABB00A0B8D3 /* InfoPlist.strings */; };
 		891A5AD11829CABB00A0B8D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5AD01829CABB00A0B8D3 /* main.m */; };
 		891A5AD51829CABB00A0B8D3 /* SFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5AD41829CABB00A0B8D3 /* SFAppDelegate.m */; };
-		891A5AD81829CABB00A0B8D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891A5AD61829CABB00A0B8D3 /* Main.storyboard */; };
 		891A5ADB1829CABB00A0B8D3 /* SFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5ADA1829CABB00A0B8D3 /* SFViewController.m */; };
 		891A5ADD1829CABB00A0B8D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 891A5ADC1829CABB00A0B8D3 /* Images.xcassets */; };
 		891A5AE41829CABB00A0B8D3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891A5AE31829CABB00A0B8D3 /* XCTest.framework */; };
@@ -22,6 +21,9 @@
 		891A5AEE1829CABB00A0B8D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 891A5AEC1829CABB00A0B8D3 /* InfoPlist.strings */; };
 		891A5AF01829CABB00A0B8D3 /* SFImageAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */; };
 		89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */; };
+		89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */; };
+		89DBFCFD182B6ED1005BA757 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DBFCFC182B6ED1005BA757 /* crosshair.png */; };
+		89DBFCFF182BA676005BA757 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89DBFCFE182BA676005BA757 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,6 @@
 		891A5AD21829CABB00A0B8D3 /* SFImageApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SFImageApp-Prefix.pch"; sourceTree = "<group>"; };
 		891A5AD31829CABB00A0B8D3 /* SFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFAppDelegate.h; sourceTree = "<group>"; };
 		891A5AD41829CABB00A0B8D3 /* SFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFAppDelegate.m; sourceTree = "<group>"; };
-		891A5AD71829CABB00A0B8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		891A5AD91829CABB00A0B8D3 /* SFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFViewController.h; sourceTree = "<group>"; };
 		891A5ADA1829CABB00A0B8D3 /* SFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFViewController.m; sourceTree = "<group>"; };
 		891A5ADC1829CABB00A0B8D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -56,6 +57,10 @@
 		891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFImageAppTests.m; sourceTree = "<group>"; };
 		89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFEditImageViewController.h; sourceTree = "<group>"; };
 		89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFEditImageViewController.m; sourceTree = "<group>"; };
+		89DBFCF7182B6CC9005BA757 /* SFOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOverlayView.h; sourceTree = "<group>"; };
+		89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOverlayView.m; sourceTree = "<group>"; };
+		89DBFCFC182B6ED1005BA757 /* crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crosshair.png; sourceTree = "<group>"; };
+		89DBFCFE182BA676005BA757 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,15 +120,18 @@
 		891A5ACA1829CABB00A0B8D3 /* SFImageApp */ = {
 			isa = PBXGroup;
 			children = (
+				89DBFCFE182BA676005BA757 /* Main.storyboard */,
+				89DBFCFC182B6ED1005BA757 /* crosshair.png */,
 				891A5AD31829CABB00A0B8D3 /* SFAppDelegate.h */,
 				891A5AD41829CABB00A0B8D3 /* SFAppDelegate.m */,
-				891A5AD61829CABB00A0B8D3 /* Main.storyboard */,
 				891A5AD91829CABB00A0B8D3 /* SFViewController.h */,
 				891A5ADA1829CABB00A0B8D3 /* SFViewController.m */,
 				891A5ADC1829CABB00A0B8D3 /* Images.xcassets */,
 				891A5ACB1829CABB00A0B8D3 /* Supporting Files */,
 				89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */,
 				89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */,
+				89DBFCF7182B6CC9005BA757 /* SFOverlayView.h */,
+				89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */,
 			);
 			path = SFImageApp;
 			sourceTree = "<group>";
@@ -236,7 +244,8 @@
 			files = (
 				891A5ADD1829CABB00A0B8D3 /* Images.xcassets in Resources */,
 				891A5ACF1829CABB00A0B8D3 /* InfoPlist.strings in Resources */,
-				891A5AD81829CABB00A0B8D3 /* Main.storyboard in Resources */,
+				89DBFCFD182B6ED1005BA757 /* crosshair.png in Resources */,
+				89DBFCFF182BA676005BA757 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +267,7 @@
 				891A5AD11829CABB00A0B8D3 /* main.m in Sources */,
 				891A5ADB1829CABB00A0B8D3 /* SFViewController.m in Sources */,
 				891A5AD51829CABB00A0B8D3 /* SFAppDelegate.m in Sources */,
+				89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */,
 				89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,14 +297,6 @@
 				891A5ACE1829CABB00A0B8D3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		891A5AD61829CABB00A0B8D3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				891A5AD71829CABB00A0B8D3 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		891A5AEC1829CABB00A0B8D3 /* InfoPlist.strings */ = {

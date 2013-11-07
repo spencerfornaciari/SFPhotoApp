@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SFEditImageViewController.h"
+#import "SFOverlayView.h"
 
-@interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageDelegate>
+@interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate>
+
 
 - (IBAction)showUIActionSheet:(id)sender;
 

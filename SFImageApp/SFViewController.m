@@ -8,7 +8,14 @@
 
 #import "SFViewController.h"
 
-@interface SFViewController () 
+//transform values for full screen support
+#define CAMERA_TRANSFORM_X 1
+#define CAMERA_TRANSFORM_Y 1.12412
+//iphone screen dimensions
+#define SCREEN_WIDTH  320
+#define SCREEN_HEIGTH 480
+
+@interface SFViewController () <SFEditImageViewControllerDelegate>
 
 @end
 
@@ -67,29 +74,40 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-//    SFEditImageViewController *editImageController = [[SFEditImageViewController alloc] init];
+//    SFEditImageViewController *editImageController = [[SFEditImageViewController alloc] initWithNibName:@"SFEditImageViewController" bundle:nil];
+//    editImageController.delegate = self;
+//    
+//    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+//    
+//    editImageController.basicImage = pickedImage;
 //    
 //    [self presentViewController:editImageController animated:YES completion:nil];
-    
+//    
+//    
+//    
     
     [self dismissViewControllerAnimated:YES completion:^{
         UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    
+        
         [self applyFilterToImage:pickedImage];
     }];
 }
 
 -(void)applyFilterToImage:(UIImage *)image
 {
-    // filter the image
+//    UIActionSheet *filterOptions = [[UIActionSheet alloc] initWithTitle:@"Filter Options"
+//                                                              delegate:self
+//                                                     cancelButtonTitle:@"Cancel"
+//                                                destructiveButtonTitle:nil otherButtonTitles:@"CIPhotoEffectProcess", @"CIPhotoEffectTonal", @"CIColorPosterize", @"None", nil];
+//    
+//    [filterOptions showInView:self.view];
+    
     CIContext *context = [CIContext contextWithOptions:nil];
     
     CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
     
-    //CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectInstant"];
+    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectTonal"];
     
-    CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
-
     [filter setValue:ciImage forKey:kCIInputImageKey];
     
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
@@ -100,14 +118,37 @@
     
     UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
     
+//    // filter the image
+//    CIContext *context = [CIContext contextWithOptions:nil];
+//    
+//    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
+//    
+//    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectTonal"];
+//    
+//    [filter setValue:ciImage forKey:kCIInputImageKey];
+//    
+//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+//   
+//    CGRect extent = [result extent];
+//    
+//    CGImageRef cgImage = [context createCGImage:result fromRect:extent];
+//    
+//    UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
+    
     // show the image to the user
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    [imageView setImage:filteredImage];
-    [self.view addSubview:imageView];
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
+//    [imageView setImage:filteredImage];
+//    imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    imageView.layer.cornerRadius = 160.f;
+//    imageView.layer.masksToBounds = YES;
+//    [self.view addSubview:imageView];
+    
+    [self presentImage:filteredImage];
     
     // save the image to the photos album
     UIImageWriteToSavedPhotosAlbum(filteredImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -172,26 +213,92 @@
     
 }
 
+-(void)filterActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+   // CIContext *context = [CIContext contextWithOptions:nil];
+    
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            // CIFilter *filter = [CIFilter filterWithName:@"CIColorPosterize"];
+        }
+            break;
+            
+        case 1:
+        {
+            //CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectProcess"];
+        }
+            break;
+    }
+    
+//    [filter setValue:ciImage forKey:kCIInputImageKey];
+//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+//    CGRect extent = [result extent];
+//    
+//    CGImageRef cgImage = [context createCGImage:result fromRect:extent];
+//    
+//    UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
+    
+    // show the image to the user
+    
+    // save the image to the photos album
+   // UIImageWriteToSavedPhotosAlbum(filteredImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+}
+
+
+
 -(void)useCamera
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    [picker setDelegate:self];
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    [picker setDelegate:self];
+//    
+//    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//    picker.showsCameraControls = YES;
+//    //picker.cameraOverlayView = overlayView;
+//    
+//    [picker setAllowsEditing:YES];
+//    [self presentViewController:picker animated:YES completion:^{
+//        // NSLog(@"Showing camera!"); }];
     
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
 //    UIView* overlayView = [[UIView alloc] initWithFrame:picker.view.frame];
 //    // letting png transparency be
 //    overlayView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"yourimagename.png"]];
 //    [overlayView.layer setOpaque:NO];
 //    overlayView.opaque = NO;
     
-    picker.showsCameraControls = YES;
-    //picker.cameraOverlayView = overlayView;
+    //Create a new image picker instance
+    UIImagePickerController *picker =
+    [[UIImagePickerController alloc] init];
     
-    [picker setAllowsEditing:YES];
-    [self presentViewController:picker animated:YES completion:^{
-        // NSLog(@"Showing camera!");
-        
-    }];
+    //Create camera overlay
+    SFOverlayView *overlay = [[SFOverlayView alloc]
+                            initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH)];
+    
+//    UIView *imagePickerView = picker.view;
+//    CGRect cameraViewFrame = CGRectMake(0, 100, 320, 320);
+//    imagePickerView.frame = cameraViewFrame;
+//    [self.view addSubview:imagePickerView];
+
+    //set source to video!
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //hide all controls
+    picker.showsCameraControls = YES;
+    picker.navigationBarHidden = YES;
+    picker.toolbarHidden = YES;
+    //make the video preview full size
+    picker.cameraViewTransform =
+    CGAffineTransformScale(picker.cameraViewTransform,
+                           CAMERA_TRANSFORM_X,
+                           CAMERA_TRANSFORM_Y);
+    //set our custom overlay view
+    picker.cameraOverlayView = overlay;
+    
+    //show picker
+    [self presentViewController:picker animated:YES completion:nil];
+    
 }
 
 -(void)usePhotoLibrary
@@ -206,6 +313,21 @@
         // NSLog(@"Showing camera!");
         
     }];
+}
+
+-(void)presentImage:(UIImage *)filteredImage
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
+    [imageView setImage:filteredImage];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.layer.cornerRadius = 160.f;
+    imageView.layer.masksToBounds = YES;
+    [self.view addSubview:imageView];
+}
+
+-(void)noFunction
+{
+    
 }
 
 @end

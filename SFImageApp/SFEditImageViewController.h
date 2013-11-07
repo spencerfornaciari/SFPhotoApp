@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SFEditImageDelegate <NSObject>
+@protocol SFEditImageViewControllerDelegate <NSObject>
+-(void)noFunction;
 
 
 @end
 
 @interface SFEditImageViewController : UIViewController
+
+
+@property (weak, nonatomic) id <SFEditImageViewControllerDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UIImageView *editImage;
+@property (weak, nonatomic) UIImage *basicImage;
+
 - (IBAction)filterImage:(id)sender;
 
 - (IBAction)saveEdit:(id)sender;
