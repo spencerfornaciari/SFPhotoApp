@@ -14,6 +14,7 @@
 @interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImage *originalImage;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *filterSegmentedButtons;
 
 

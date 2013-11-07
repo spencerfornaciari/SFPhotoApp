@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @protocol SFEditImageViewControllerDelegate <NSObject>
--(void)noFunction;
 
 
 @end

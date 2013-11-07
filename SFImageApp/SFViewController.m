@@ -17,16 +17,24 @@
 @end
 
 @implementation SFViewController
+{
+    UIImage *_tempImage;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.filterSegmentedButtons.enabled = NO;
+    if (self.imageView.image == nil)
+    {
+        self.filterSegmentedButtons.enabled = NO;
+        self.filterSegmentedButtons.selectedSegmentIndex = 3;
+    }
+    
     //self.filterSegmentedButtons.tintColor = [UIColor blackColor];
     
-}
+} 
 
 - (void)didReceiveMemoryWarning
 {
@@ -49,9 +57,6 @@
 }
 
 #pragma mark - Declare UIActionSheet
-
-- (IBAction)filterViewSegmentController:(id)sender {
-}
 
 -(IBAction)showUIActionSheet:(id)sender
 {
@@ -101,44 +106,34 @@
 //    
 //    
 //
-    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    self.imageView.image = pickedImage;
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+//    self.imageView.image = pickedImage;
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-//        
-//        [self applyFilterToImage:pickedImage];
-//    }];
+    [self dismissViewControllerAnimated:YES completion:^{
+        UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        
+        [self applyFilterToImage:pickedImage];
+    }];
 }
 
 -(void)applyFilterToImage:(UIImage *)image
 {
-//    UIActionSheet *filterOptions = [[UIActionSheet alloc] initWithTitle:@"Filter Options"
-//                                                              delegate:self
-//                                                     cancelButtonTitle:@"Cancel"
-//                                                destructiveButtonTitle:nil otherButtonTitles:@"CIPhotoEffectProcess", @"CIPhotoEffectTonal", @"CIColorPosterize", @"None", nil];
+
+//    CIContext *context = [CIContext contextWithOptions:nil];
 //    
-//    [filterOptions showInView:self.view];
-    
-    CIContext *context = [CIContext contextWithOptions:nil];
-    
-    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
-    
-    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectTonal"];
-    
-    [filter setValue:ciImage forKey:kCIInputImageKey];
-    
-    CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    
-    CGRect extent = [result extent];
-    
-    CGImageRef cgImage = [context createCGImage:result fromRect:extent];
-    
-    UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
+//    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
+//    
+//    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectTonal"];
+//    
+//    [filter setValue:ciImage forKey:kCIInputImageKey];
+//    
+//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+//    
+//    CGRect extent = [result extent];
+//    
+//    CGImageRef cgImage = [context createCGImage:result fromRect:extent];
+//    
+//    UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
     
 //    // filter the image
 //    CIContext *context = [CIContext contextWithOptions:nil];
@@ -157,7 +152,7 @@
 //    
 //    UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
     
-    // show the image to the user
+//    // show the image to the user
 //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
 //    [imageView setImage:filteredImage];
 //    imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -165,10 +160,26 @@
 //    imageView.layer.masksToBounds = YES;
 //    [self.view addSubview:imageView];
     
-    [self presentImage:filteredImage];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
+    [imageView setImage:image];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+   // imageView.layer.cornerRadius = 160.f;
+    //imageView.layer.masksToBounds = YES;
+    
+    
+    self.imageView = imageView;
+    NSLog(@"Temp ImageView: %@", imageView);
+    NSLog(@"Property ImageView: %@", self.imageView);
+
+    self.originalImage = imageView.image;
+    //[self.imageView setImage:imageView.image];
+    [self.view addSubview:imageView];
+    
+    
+    //[self presentImage:filteredImage];
     
     // save the image to the photos album
-    UIImageWriteToSavedPhotosAlbum(filteredImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    //UIImageWriteToSavedPhotosAlbum(filteredImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 
@@ -221,6 +232,9 @@
             {
                 [self usePhotoLibrary];
                 self.filterSegmentedButtons.enabled = YES;
+                //[self.filterSegmentedButtons addTarget:self
+                //                                action:@selector(pickFilter:)
+                //                      forControlEvents:UIControlEventValueChanged];
 
             }
             
@@ -261,43 +275,6 @@
     
     
 }
-
--(void)filterActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-   // CIContext *context = [CIContext contextWithOptions:nil];
-    
-    switch (buttonIndex)
-    {
-        case 0:
-        {
-            // CIFilter *filter = [CIFilter filterWithName:@"CIColorPosterize"];
-        }
-            break;
-            
-        case 1:
-        {
-            //CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectProcess"];
-        }
-            break;
-    }
-    
-//    [filter setValue:ciImage forKey:kCIInputImageKey];
-//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    
-//    CGRect extent = [result extent];
-//    
-//    CGImageRef cgImage = [context createCGImage:result fromRect:extent];
-//    
-//    UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
-    
-    // show the image to the user
-    
-    // save the image to the photos album
-   // UIImageWriteToSavedPhotosAlbum(filteredImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    
-}
-
-
 
 -(void)useCamera
 {
@@ -373,16 +350,70 @@
 //    imageView.layer.masksToBounds = YES;
 //    [self.view addSubview:imageView];
     
-    
     [self.imageView setImage:filteredImage];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.layer.cornerRadius = 160.f;
     self.imageView.layer.masksToBounds = YES;
     [self.view addSubview:self.imageView];
+    _tempImage = nil;
+
 }
 
--(void)noFunction
+#pragma mark - Segmented Contronller Setup
+
+-(IBAction)filterViewSegmentController:(id)sender
 {
+    //NSLog(@"Property ImageView: %@", self.imageView);
+    _tempImage = self.originalImage;
+    NSLog(@"_temp: %@", _tempImage);
+
+    
+    if (self.filterSegmentedButtons.selectedSegmentIndex == 0) {
+        NSLog(@"Filter One");
+        CIContext *context = [CIContext contextWithOptions:nil];
+        CIImage *ciImage = [CIImage imageWithCGImage:_tempImage.CGImage];
+        CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectTonal"];
+        [filter setValue:ciImage forKey:kCIInputImageKey];
+        CIImage *result = [filter valueForKey:kCIOutputImageKey];
+        CGRect extent = [result extent];
+        CGImageRef cgImage = [context createCGImage:result fromRect:extent];
+        UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
+        [self presentImage:filteredImage];
+    }
+    
+    if (self.filterSegmentedButtons.selectedSegmentIndex == 1) {
+        NSLog(@"Filter Two");
+        CIContext *context = [CIContext contextWithOptions:nil];
+        CIImage *ciImage = [CIImage imageWithCGImage:_tempImage.CGImage];
+        CIFilter *filter = [CIFilter filterWithName:@"CIColorPosterize"];
+        [filter setValue:ciImage forKey:kCIInputImageKey];
+        CIImage *result = [filter valueForKey:kCIOutputImageKey];
+        CGRect extent = [result extent];
+        CGImageRef cgImage = [context createCGImage:result fromRect:extent];
+        UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
+        [self presentImage:filteredImage];
+    }
+    
+    if (self.filterSegmentedButtons.selectedSegmentIndex == 2) {
+        NSLog(@"Filter Three");
+        CIContext *context = [CIContext contextWithOptions:nil];
+        CIImage *ciImage = [CIImage imageWithCGImage:_tempImage.CGImage];
+        CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectProcess"];
+        [filter setValue:ciImage forKey:kCIInputImageKey];
+        CIImage *result = [filter valueForKey:kCIOutputImageKey];
+        CGRect extent = [result extent];
+        CGImageRef cgImage = [context createCGImage:result fromRect:extent];
+        UIImage *filteredImage = [UIImage imageWithCGImage:cgImage];
+        [self presentImage:filteredImage];
+    }
+    
+    if (self.filterSegmentedButtons.selectedSegmentIndex == 3) {
+        self.imageView.image = self.originalImage;
+        self.imageView.layer.cornerRadius = 0.f;
+        self.imageView.layer.masksToBounds = NO;
+        
+    }
+    
     
 }
 
