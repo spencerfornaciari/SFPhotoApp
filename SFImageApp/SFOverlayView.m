@@ -33,8 +33,16 @@
         
         
 //        UIImage *searcher = [UIImage imageNamed:@"crosshair.png"];
-//        UIImageView *searcherView = [[UIImageView alloc]
-//                                     initWithImage:searcher];
+        
+
+        UIImageView *searcherView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 70, 320, 320)];
+        [self addSubview:searcherView];
+          //searcherView.backgroundColor = [UIColor clearColor];
+        
+
+        
+//
+    //initWithImage:searcher];
 //        searcherView.frame = CGRectMake(30, 100, 260, 200);
 //        [self addSubview:searcherView];
         
@@ -64,15 +72,16 @@
     if (filterPicked.selectedSegmentIndex == 0)
     {
        // UIView *view = [self imagePreview];
+        NSLog(@"Filter 1");
     }
     
     else if (filterPicked.selectedSegmentIndex == 1 ) {
-        
+        NSLog(@"Filter 2");
     }
     
     else if (filterPicked.selectedSegmentIndex == 2)
     {
-        
+        NSLog(@"Filter 3");
     }
 }
 

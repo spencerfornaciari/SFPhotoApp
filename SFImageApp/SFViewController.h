@@ -13,7 +13,11 @@
 
 @interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *filterSegmentedButtons;
 
+
+- (IBAction)filterViewSegmentController:(id)sender;
 - (IBAction)showUIActionSheet:(id)sender;
 
 @end

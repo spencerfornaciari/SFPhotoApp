@@ -10,10 +10,7 @@
 
 //transform values for full screen support
 #define CAMERA_TRANSFORM_X 1
-#define CAMERA_TRANSFORM_Y 1.12412
-//iphone screen dimensions
-#define SCREEN_WIDTH  320
-#define SCREEN_HEIGTH 480
+#define CAMERA_TRANSFORM_Y 1
 
 @interface SFViewController () <SFEditImageViewControllerDelegate>
 
@@ -26,16 +23,35 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    }
+    self.filterSegmentedButtons.enabled = NO;
+    //self.filterSegmentedButtons.tintColor = [UIColor blackColor];
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
+    
+    //NSArray *segmentedOptions = [NSArray arrayWithObjects:@"Plain", @"Filter 1", @"Filter 2", @"Filter 3", nil];
+
+//    UISegmentedControl *filters =[[UISegmentedControl alloc] initWithItems:segmentedOptions];
+//    filters.frame = CGRectMake(20, 480, 280, 28);
+//    filters.selectedSegmentIndex = 1;
+//    filters.tintColor = [UIColor blackColor];
+//    [filters addTarget:self
+//                action:@selector(pickFilter:)
+//      forControlEvents:UIControlEventValueChanged];
+//    
+//    [self.view addSubview:filters];
+    
 }
 
 #pragma mark - Declare UIActionSheet
+
+- (IBAction)filterViewSegmentController:(id)sender {
+}
 
 -(IBAction)showUIActionSheet:(id)sender
 {
@@ -43,7 +59,7 @@
     UIActionSheet *imageOptions = [[UIActionSheet alloc] initWithTitle:@"Image Options"
                                                               delegate:self
                                                      cancelButtonTitle:@"Cancel"
-                                                destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Album", nil];
+                                                destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Album", @"Save Image", nil];
     
     [imageOptions showInView:self.view];
 
@@ -84,13 +100,19 @@
 //    [self presentViewController:editImageController animated:YES completion:nil];
 //    
 //    
-//    
+//
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    self.imageView.image = pickedImage;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        
-        [self applyFilterToImage:pickedImage];
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+//        
+//        [self applyFilterToImage:pickedImage];
+//    }];
 }
 
 -(void)applyFilterToImage:(UIImage *)image
@@ -176,12 +198,15 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
             {
                 [self useCamera];
+                self.filterSegmentedButtons.enabled = YES;
             }
             
             else
             {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No camera available" message:@"Try photo album?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
                 [alertView show];
+                
+                
                 
                 //ERROR - it heads right to photo album if there is no camera
             }
@@ -195,6 +220,8 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
             {
                 [self usePhotoLibrary];
+                self.filterSegmentedButtons.enabled = YES;
+
             }
             
             else
@@ -208,6 +235,28 @@
             
         }
         break;
+            
+        case 2:
+        {
+            //Setup action sheet to use the photo album
+            if (self.imageView.image)
+            {
+                UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+//                UIImageWriteToSavedPhotosAlbum(filteredImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            }
+            
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No photo selected" message:@"Please pick a photo" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+                //ERROR - it heads right to photo album if there is no camera
+            }
+            
+            
+        }
+            break;
+
     }
     
     
@@ -275,7 +324,7 @@
     
     //Create camera overlay
     SFOverlayView *overlay = [[SFOverlayView alloc]
-                            initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH)];
+                              initWithFrame:self.view.frame];
     
 //    UIView *imagePickerView = picker.view;
 //    CGRect cameraViewFrame = CGRectMake(0, 100, 320, 320);
@@ -317,12 +366,19 @@
 
 -(void)presentImage:(UIImage *)filteredImage
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
-    [imageView setImage:filteredImage];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.layer.cornerRadius = 160.f;
-    imageView.layer.masksToBounds = YES;
-    [self.view addSubview:imageView];
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
+//    [imageView setImage:filteredImage];
+//    imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    imageView.layer.cornerRadius = 160.f;
+//    imageView.layer.masksToBounds = YES;
+//    [self.view addSubview:imageView];
+    
+    
+    [self.imageView setImage:filteredImage];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.layer.cornerRadius = 160.f;
+    self.imageView.layer.masksToBounds = YES;
+    [self.view addSubview:self.imageView];
 }
 
 -(void)noFunction
