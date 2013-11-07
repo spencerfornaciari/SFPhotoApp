@@ -28,10 +28,15 @@
     
 }
 
+#pragma mark - Declare UIActionSheet
+
 -(IBAction)showUIActionSheet:(id)sender
 {
     //Create the UIAction sheet and display it
-    UIActionSheet *imageOptions = [[UIActionSheet alloc] initWithTitle:@"Image Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Album", nil];
+    UIActionSheet *imageOptions = [[UIActionSheet alloc] initWithTitle:@"Image Options"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"Cancel"
+                                                destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Album", nil];
     
     [imageOptions showInView:self.view];
 
@@ -39,32 +44,37 @@
 
 #pragma mark - Image Picker
 
--(IBAction)getImage:(id)sender
-{
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    [picker setDelegate:self];
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    }
-    else
-    {
-        [picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    }
-    
-    [picker setAllowsEditing:YES];
-    [self presentViewController:picker animated:YES completion:^{
-        NSLog(@"Showing camera!");
-    }];
-    
-}
+//-(IBAction)getImage:(id)sender
+//{
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    [picker setDelegate:self];
+//    
+//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//    {
+//        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//    }
+//    else
+//    {
+//        [picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+//    }
+//    
+//    [picker setAllowsEditing:YES];
+//    [self presentViewController:picker animated:YES completion:^{
+//        NSLog(@"Showing camera!");
+//    }];
+//    
+//}
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+//    SFEditImageViewController *editImageController = [[SFEditImageViewController alloc] init];
+//    
+//    [self presentViewController:editImageController animated:YES completion:nil];
+    
+    
     [self dismissViewControllerAnimated:YES completion:^{
         UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        
+    
         [self applyFilterToImage:pickedImage];
     }];
 }
@@ -76,8 +86,10 @@
     
     CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
     
-    CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectInstant"];
+    //CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectInstant"];
     
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
+
     [filter setValue:ciImage forKey:kCIInputImageKey];
     
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
@@ -99,7 +111,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    NSLog(@"User cancelled image selection");
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)image: (UIImage *)image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
@@ -113,29 +125,85 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    [picker setDelegate:self];
+    
     
     switch (buttonIndex)
     {
         case 0:
         {
             //Setup action sheet to use the camer
-            [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+            {
+                [self useCamera];
+            }
+            
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No camera available" message:@"Try photo album?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+                //ERROR - it heads right to photo album if there is no camera
+            }
+            
         }
         break;
         
         case 1:
         {
             //Setup action sheet to use the photo album
-            [picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+            {
+                [self usePhotoLibrary];
+            }
+            
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Photo album not available" message:@"Can you allow access?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+                [alertView show];
+                
+                //ERROR - it heads right to photo album if there is no camera
+            }
+            
+            
         }
         break;
     }
     
+    
+}
+
+-(void)useCamera
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    
+    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//    UIView* overlayView = [[UIView alloc] initWithFrame:picker.view.frame];
+//    // letting png transparency be
+//    overlayView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"yourimagename.png"]];
+//    [overlayView.layer setOpaque:NO];
+//    overlayView.opaque = NO;
+    
+    picker.showsCameraControls = YES;
+    //picker.cameraOverlayView = overlayView;
+    
     [picker setAllowsEditing:YES];
     [self presentViewController:picker animated:YES completion:^{
-       // NSLog(@"Showing camera!");
+        // NSLog(@"Showing camera!");
+        
+    }];
+}
+
+-(void)usePhotoLibrary
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    
+    [picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    
+    [picker setAllowsEditing:YES];
+    [self presentViewController:picker animated:YES completion:^{
+        // NSLog(@"Showing camera!");
         
     }];
 }

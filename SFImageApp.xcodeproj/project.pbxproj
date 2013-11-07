@@ -21,6 +21,7 @@
 		891A5AE61829CABB00A0B8D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891A5AC81829CABB00A0B8D3 /* UIKit.framework */; };
 		891A5AEE1829CABB00A0B8D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 891A5AEC1829CABB00A0B8D3 /* InfoPlist.strings */; };
 		891A5AF01829CABB00A0B8D3 /* SFImageAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */; };
+		89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		891A5AEB1829CABB00A0B8D3 /* SFImageAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SFImageAppTests-Info.plist"; sourceTree = "<group>"; };
 		891A5AED1829CABB00A0B8D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFImageAppTests.m; sourceTree = "<group>"; };
+		89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFEditImageViewController.h; sourceTree = "<group>"; };
+		89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFEditImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				891A5ADA1829CABB00A0B8D3 /* SFViewController.m */,
 				891A5ADC1829CABB00A0B8D3 /* Images.xcassets */,
 				891A5ACB1829CABB00A0B8D3 /* Supporting Files */,
+				89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */,
+				89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */,
 			);
 			path = SFImageApp;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				891A5AD11829CABB00A0B8D3 /* main.m in Sources */,
 				891A5ADB1829CABB00A0B8D3 /* SFViewController.m in Sources */,
 				891A5AD51829CABB00A0B8D3 /* SFAppDelegate.m in Sources */,
+				89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,7 @@
 				891A5AF51829CABB00A0B8D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		891A5AF61829CABB00A0B8D3 /* Build configuration list for PBXNativeTarget "SFImageAppTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				891A5AF81829CABB00A0B8D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
