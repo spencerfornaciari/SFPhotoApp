@@ -67,6 +67,11 @@
 }
 */
 
+-(void)pickFilter:(id)sender
+{
+    
+}
+
 //-(void) pickFilter:(id)sender{
 //    UISegmentedControl *filterPicked = (UISegmentedControl *)sender;
 //   // label.text = [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]];
