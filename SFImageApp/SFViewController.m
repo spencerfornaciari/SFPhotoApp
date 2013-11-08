@@ -131,16 +131,20 @@
         case 1:
         {
             //Setup action sheet to use the photo album
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
-            {
-                [self usePhotoLibrary];
-                self.filterSegmentedButtons.enabled = YES;
-            }
-            
-            else
+            ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
+            NSLog(@"%d", status);
+            if (status == ALAuthorizationStatusDenied)
             {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Photo album not available" message:@"Can you allow access?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
                 [alertView show];
+            }
+            
+            else 
+            {
+                [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+                [self usePhotoLibrary];
+                self.filterSegmentedButtons.enabled = YES;
+
             }
             
         }
