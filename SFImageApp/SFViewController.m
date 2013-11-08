@@ -66,8 +66,6 @@
 {
     [self dismissViewControllerAnimated:YES completion:^{
         UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    
-        NSLog(@"%@", pickedImage);
 
         [self applyFilterToImage:pickedImage];
     }];
@@ -75,8 +73,6 @@
 
 -(void)applyFilterToImage:(UIImage *)image
 {
-    
-    NSLog(@"%@", image);
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
     [imageView setImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
