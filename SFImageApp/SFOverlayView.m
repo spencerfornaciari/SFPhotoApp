@@ -9,6 +9,10 @@
 #import "SFOverlayView.h"
 
 @implementation SFOverlayView
+{
+    UISegmentedControl *_filters;
+    UIView *_imageFrame;
+}
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -20,17 +24,17 @@
         
         //load an image to show in the overlay
         
-//        NSArray *segmentedOptions = [NSArray arrayWithObjects:@"Plain", @"Filter 1", @"Filter 2", nil];
-//        UISegmentedControl *filters = [[UISegmentedControl alloc] initWithItems:segmentedOptions];
-//        filters.frame = CGRectMake(20, 430, 280, 28);
-//        filters.selectedSegmentIndex = 1;
-//        filters.tintColor = [UIColor whiteColor];
-//        [filters addTarget:self
-//                    action:@selector(pickFilter:)
-//          forControlEvents:UIControlEventValueChanged];
-//        
-//        [self addSubview:filters];
-//        
+        NSArray *segmentedOptions = [NSArray arrayWithObjects:@"Red", @"Blue", @"Green", nil];
+        _filters = [[UISegmentedControl alloc] initWithItems:segmentedOptions];
+        _filters.frame = CGRectMake(20, 430, 280, 28);
+        _filters.selectedSegmentIndex = 0;
+        _filters.tintColor = [UIColor redColor];
+        [_filters addTarget:self
+                    action:@selector(pickFilter:)
+          forControlEvents:UIControlEventValueChanged];
+        
+        [self addSubview:_filters];
+//
         
 //        UIImage *searcher = [UIImage imageNamed:@"crosshair.png"];
         
@@ -39,21 +43,18 @@
 //        [self addSubview:searcherView];
           //searcherView.backgroundColor = [UIColor clearColor];
         
-
-        
-//
-    //initWithImage:searcher];
-//        searcherView.frame = CGRectMake(30, 100, 260, 200);
-//        [self addSubview:searcherView];
-        
-        //add a simple button to the overview
-        //with no functionality at the moment
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(160, 350, 320, 40)];
+        //Create a label for the camera HUD
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 63 , 320, 40)];
         label.text = @"Camera HUD";
+        label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor whiteColor];
-//        [button setTitle:@"Scan Now" forState:UIControlStateNormal];
-//        button.frame = CGRectMake(0, 430, 320, 40);
         [self addSubview:label];
+        
+        //Create a frame border for the input
+        _imageFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 98, 320, 320)];
+        _imageFrame.layer.borderColor=[UIColor redColor].CGColor;
+        _imageFrame.layer.borderWidth=3.f;
+        [self addSubview:_imageFrame];
     }
     return self;
 }
@@ -67,29 +68,21 @@
 }
 */
 
--(void)pickFilter:(id)sender
+-(IBAction)pickFilter:(id)sender
 {
-    
+        
+        if (_filters.selectedSegmentIndex == 0) {
+            _imageFrame.layer.borderColor=[UIColor redColor].CGColor;
+        }
+        
+        if (_filters.selectedSegmentIndex == 1) {
+            _imageFrame.layer.borderColor=[UIColor blueColor].CGColor;
+        }
+        
+        if (_filters.selectedSegmentIndex == 2) {
+            _imageFrame.layer.borderColor=[UIColor greenColor].CGColor;
+        }
+
 }
-
-//-(void) pickFilter:(id)sender{
-//    UISegmentedControl *filterPicked = (UISegmentedControl *)sender;
-//   // label.text = [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]];
-//    if (filterPicked.selectedSegmentIndex == 0)
-//    {
-//       // UIView *view = [self imagePreview];
-//        NSLog(@"Filter 1");
-//    }
-//    
-//    else if (filterPicked.selectedSegmentIndex == 1 ) {
-//        NSLog(@"Filter 2");
-//    }
-//    
-//    else if (filterPicked.selectedSegmentIndex == 2)
-//    {
-//        NSLog(@"Filter 3");
-//    }
-//}
-
 
 @end

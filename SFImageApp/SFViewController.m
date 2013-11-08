@@ -66,7 +66,9 @@
 {
     [self dismissViewControllerAnimated:YES completion:^{
         UIImage *pickedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        
+    
+        NSLog(@"%@", pickedImage);
+
         [self applyFilterToImage:pickedImage];
     }];
 }
@@ -74,6 +76,7 @@
 -(void)applyFilterToImage:(UIImage *)image
 {
     
+    NSLog(@"%@", image);
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
     [imageView setImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -180,33 +183,13 @@
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
      [picker setAllowsEditing:YES];
     
-    UIView *overlay = [[UIView alloc] initWithFrame:picker.view.frame];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 63 , 320, 40)];
-    label.text = @"Camera HUD";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
-    
-    UIView *imageFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 98, 320, 320)];
-    
-    imageFrame.layer.borderColor=[UIColor redColor].CGColor;
-    imageFrame.layer.borderWidth=3.f;
-    [overlay addSubview:imageFrame];
-    //        [button setTitle:@"Scan Now" forState:UIControlStateNormal];
-    //        button.frame = CGRectMake(0, 430, 320, 40);
-    [overlay addSubview:label];
-    
-    //SFOverlayView *overlay = [[SFOverlayView alloc] initWithFrame:picker.view.frame];
- 
-    picker.showsCameraControls = YES;
-    picker.navigationBarHidden = YES;
-    picker.toolbarHidden = YES;
+    //Add camera overlay
+    SFOverlayView *overlay = [[SFOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, 450)];
     picker.cameraOverlayView = overlay;
     
-    //show picker
-    //[self presentViewController:picker animated:YES completion:nil];
+    //Show picker
     [self presentViewController:picker animated:YES completion:^{
         NSLog(@"Showing Camera");
-        
         
     }];
 }
@@ -231,9 +214,7 @@
 -(IBAction)filterViewSegmentController:(id)sender
 {
     _tempImage = self.originalImage;
-    NSLog(@"_temp: %@", _tempImage);
 
-    
     if (self.filterSegmentedButtons.selectedSegmentIndex == 0) {
         NSLog(@"Filter One");
         CIContext *context = [CIContext contextWithOptions:nil];

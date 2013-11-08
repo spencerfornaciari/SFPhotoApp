@@ -10,7 +10,7 @@
 
 @interface SFOverlayView : UIView
 
--(void)pickFilter:(id)sender;
+-(IBAction)pickFilter:(id)sender;
 
 
 @end
