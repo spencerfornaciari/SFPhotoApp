@@ -32,7 +32,9 @@
         self.filterSegmentedButtons.selectedSegmentIndex = 3;
     }
     
-    //self.filterSegmentedButtons.tintColor = [UIColor blackColor];
+    self.createMagicButton.backgroundColor = [UIColor redColor];
+    
+    self.filterSegmentedButtons.tintColor = [UIColor redColor];
     
 } 
 
@@ -65,6 +67,7 @@
                                                               delegate:self
                                                      cancelButtonTitle:@"Cancel"
                                                 destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Album", @"Save Image", nil];
+
     
     [imageOptions showInView:self.view];
 
@@ -185,6 +188,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    self.filterSegmentedButtons.enabled = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -208,8 +212,8 @@
             //Setup action sheet to use the camer
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
             {
-                [self useCamera];
                 self.filterSegmentedButtons.enabled = YES;
+                [self useCamera];
             }
             
             else
@@ -278,6 +282,45 @@
 
 -(void)useCamera
 {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+     [picker setAllowsEditing:YES];
+    
+    UIView *overlay = [[UIView alloc] initWithFrame:picker.view.frame];
+    //overlay.backgroundColor = [UIColor orangeColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 63 , 320, 40)];
+    label.text = @"Camera HUD";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    
+    UIView *imageFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 98, 320, 320)];
+    
+    imageFrame.layer.borderColor=[UIColor redColor].CGColor;
+    imageFrame.layer.borderWidth=3.f;
+    [overlay addSubview:imageFrame];
+    //        [button setTitle:@"Scan Now" forState:UIControlStateNormal];
+    //        button.frame = CGRectMake(0, 430, 320, 40);
+    [overlay addSubview:label];
+    
+    //SFOverlayView *overlay = [[SFOverlayView alloc] initWithFrame:picker.view.frame];
+ 
+    picker.showsCameraControls = YES;
+    picker.navigationBarHidden = YES;
+    picker.toolbarHidden = YES;
+    picker.cameraOverlayView = overlay;
+    
+    //show picker
+    //[self presentViewController:picker animated:YES completion:nil];
+    [self presentViewController:picker animated:YES completion:^{
+        NSLog(@"Showing Camera");
+        
+        
+    }];
+}
+
+-(void)wontCamera
+{
 //    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
 //    [picker setDelegate:self];
 //    
@@ -295,9 +338,23 @@
 //    [overlayView.layer setOpaque:NO];
 //    overlayView.opaque = NO;
     
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    [picker setDelegate:self];
+//    
+//    [picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+//    
+//    [picker setAllowsEditing:YES];
+//    [self presentViewController:picker animated:YES completion:^{
+//        // NSLog(@"Showing camera!");
+//        
+//    }];
+
+    
     //Create a new image picker instance
-    UIImagePickerController *picker =
-    [[UIImagePickerController alloc] init];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [picker setAllowsEditing:YES];
     
     //Create camera overlay
     SFOverlayView *overlay = [[SFOverlayView alloc]
@@ -309,21 +366,24 @@
 //    [self.view addSubview:imagePickerView];
 
     //set source to video!
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     //hide all controls
     picker.showsCameraControls = YES;
     picker.navigationBarHidden = YES;
     picker.toolbarHidden = YES;
     //make the video preview full size
-    picker.cameraViewTransform =
-    CGAffineTransformScale(picker.cameraViewTransform,
-                           CAMERA_TRANSFORM_X,
-                           CAMERA_TRANSFORM_Y);
+    //picker.cameraViewTransform =
+    //CGAffineTransformScale(picker.cameraViewTransform,
+                        //   CAMERA_TRANSFORM_X,
+                        //   CAMERA_TRANSFORM_Y);
     //set our custom overlay view
     picker.cameraOverlayView = overlay;
     
     //show picker
-    [self presentViewController:picker animated:YES completion:nil];
+    //[self presentViewController:picker animated:YES completion:nil];
+    [self presentViewController:picker animated:YES completion:^{
+        NSLog(@"Showing Camera");
+    }];
     
 }
 
@@ -398,7 +458,7 @@
         NSLog(@"Filter Three");
         CIContext *context = [CIContext contextWithOptions:nil];
         CIImage *ciImage = [CIImage imageWithCGImage:_tempImage.CGImage];
-        CIFilter *filter = [CIFilter filterWithName:@"CIPhotoEffectProcess"];
+        CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
         [filter setValue:ciImage forKey:kCIInputImageKey];
         CIImage *result = [filter valueForKey:kCIOutputImageKey];
         CGRect extent = [result extent];

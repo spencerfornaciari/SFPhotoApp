@@ -20,23 +20,23 @@
         
         //load an image to show in the overlay
         
-        NSArray *segmentedOptions = [NSArray arrayWithObjects:@"Plain", @"Filter 1", @"Filter 2", nil];
-        UISegmentedControl *filters = [[UISegmentedControl alloc] initWithItems:segmentedOptions];
-        filters.frame = CGRectMake(20, 430, 280, 28);
-        filters.selectedSegmentIndex = 1;
-        filters.tintColor = [UIColor whiteColor];
-        [filters addTarget:self
-                    action:@selector(pickFilter:)
-          forControlEvents:UIControlEventValueChanged];
-        
-        [self addSubview:filters];
-        
+//        NSArray *segmentedOptions = [NSArray arrayWithObjects:@"Plain", @"Filter 1", @"Filter 2", nil];
+//        UISegmentedControl *filters = [[UISegmentedControl alloc] initWithItems:segmentedOptions];
+//        filters.frame = CGRectMake(20, 430, 280, 28);
+//        filters.selectedSegmentIndex = 1;
+//        filters.tintColor = [UIColor whiteColor];
+//        [filters addTarget:self
+//                    action:@selector(pickFilter:)
+//          forControlEvents:UIControlEventValueChanged];
+//        
+//        [self addSubview:filters];
+//        
         
 //        UIImage *searcher = [UIImage imageNamed:@"crosshair.png"];
         
 
-        UIImageView *searcherView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 70, 320, 320)];
-        [self addSubview:searcherView];
+//        UIImageView *searcherView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 70, 320, 320)];
+//        [self addSubview:searcherView];
           //searcherView.backgroundColor = [UIColor clearColor];
         
 
@@ -48,11 +48,12 @@
         
         //add a simple button to the overview
         //with no functionality at the moment
-//        UIButton *button = [UIButton
-//                            buttonWithType:UIButtonTypeRoundedRect];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(160, 350, 320, 40)];
+        label.text = @"Camera HUD";
+        label.textColor = [UIColor whiteColor];
 //        [button setTitle:@"Scan Now" forState:UIControlStateNormal];
 //        button.frame = CGRectMake(0, 430, 320, 40);
-//        [self addSubview:button];
+        [self addSubview:label];
     }
     return self;
 }
@@ -66,24 +67,24 @@
 }
 */
 
--(void) pickFilter:(id)sender{
-    UISegmentedControl *filterPicked = (UISegmentedControl *)sender;
-   // label.text = [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]];
-    if (filterPicked.selectedSegmentIndex == 0)
-    {
-       // UIView *view = [self imagePreview];
-        NSLog(@"Filter 1");
-    }
-    
-    else if (filterPicked.selectedSegmentIndex == 1 ) {
-        NSLog(@"Filter 2");
-    }
-    
-    else if (filterPicked.selectedSegmentIndex == 2)
-    {
-        NSLog(@"Filter 3");
-    }
-}
+//-(void) pickFilter:(id)sender{
+//    UISegmentedControl *filterPicked = (UISegmentedControl *)sender;
+//   // label.text = [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]];
+//    if (filterPicked.selectedSegmentIndex == 0)
+//    {
+//       // UIView *view = [self imagePreview];
+//        NSLog(@"Filter 1");
+//    }
+//    
+//    else if (filterPicked.selectedSegmentIndex == 1 ) {
+//        NSLog(@"Filter 2");
+//    }
+//    
+//    else if (filterPicked.selectedSegmentIndex == 2)
+//    {
+//        NSLog(@"Filter 3");
+//    }
+//}
 
 
 @end
