@@ -20,6 +20,7 @@
 		891A5AE61829CABB00A0B8D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891A5AC81829CABB00A0B8D3 /* UIKit.framework */; };
 		891A5AEE1829CABB00A0B8D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 891A5AEC1829CABB00A0B8D3 /* InfoPlist.strings */; };
 		891A5AF01829CABB00A0B8D3 /* SFImageAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */; };
+		892FC8DA1841A169009C8857 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892FC8D91841A169009C8857 /* Social.framework */; };
 		89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */; };
 		89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */; };
 		89DBFCFD182B6ED1005BA757 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DBFCFC182B6ED1005BA757 /* crosshair.png */; };
@@ -55,6 +56,7 @@
 		891A5AEB1829CABB00A0B8D3 /* SFImageAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SFImageAppTests-Info.plist"; sourceTree = "<group>"; };
 		891A5AED1829CABB00A0B8D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFImageAppTests.m; sourceTree = "<group>"; };
+		892FC8D91841A169009C8857 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFEditImageViewController.h; sourceTree = "<group>"; };
 		89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFEditImageViewController.m; sourceTree = "<group>"; };
 		89DBFCF7182B6CC9005BA757 /* SFOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOverlayView.h; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				892FC8DA1841A169009C8857 /* Social.framework in Frameworks */,
 				891A5AC71829CABB00A0B8D3 /* CoreGraphics.framework in Frameworks */,
 				891A5AC91829CABB00A0B8D3 /* UIKit.framework in Frameworks */,
 				891A5AC51829CABB00A0B8D3 /* Foundation.framework in Frameworks */,
@@ -109,6 +112,7 @@
 		891A5AC31829CABB00A0B8D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				892FC8D91841A169009C8857 /* Social.framework */,
 				891A5AC41829CABB00A0B8D3 /* Foundation.framework */,
 				891A5AC61829CABB00A0B8D3 /* CoreGraphics.framework */,
 				891A5AC81829CABB00A0B8D3 /* UIKit.framework */,

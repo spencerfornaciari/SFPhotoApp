@@ -11,8 +11,11 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "SFEditImageViewController.h"
 #import "SFOverlayView.h"
+#import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate>
+@interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIImage *originalImage;
@@ -22,5 +25,7 @@
 
 - (IBAction)filterViewSegmentController:(id)sender;
 - (IBAction)showUIActionSheet:(id)sender;
+- (IBAction)shareImage:(UIBarButtonItem *)sender;
+
 
 @end

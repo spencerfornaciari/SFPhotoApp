@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iq-I3-qBg">
-                                <rect key="frame" x="20" y="415" width="280" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iq-I3-qBg">
+                                <rect key="frame" x="20" y="389" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Create Magic!">
@@ -28,12 +28,12 @@
                                     <action selector="showUIActionSheet:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Aoj-rt-bye"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tx8-8g-LW7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tx8-8g-LW7">
                                 <rect key="frame" x="0.0" y="20" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ILd-nr-Hcz">
-                                <rect key="frame" x="20" y="369" width="280" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ILd-nr-Hcz">
+                                <rect key="frame" x="20" y="353" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Filter 1"/>
@@ -45,12 +45,31 @@
                                     <action selector="filterViewSegmentController:" destination="vXZ-lx-hvc" eventType="valueChanged" id="5Is-qH-GWP"/>
                                 </connections>
                             </segmentedControl>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Vp-Zn-sBP">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem image="Facebook" id="Crh-K0-Dci" userLabel="Bar Button Item - Facebook">
+                                        <connections>
+                                            <action selector="shareImage:" destination="vXZ-lx-hvc" id="8qW-BW-f6n"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="v8v-Rg-6yr"/>
+                                    <barButtonItem tag="1" image="Twitter" id="h3X-Wv-geM" userLabel="Bar Button Item - Twitter">
+                                        <connections>
+                                            <action selector="shareImage:" destination="vXZ-lx-hvc" id="LMb-9E-Rqn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ovj-PR-c3t"/>
+                                    <barButtonItem tag="2" image="Email_Circle" id="mCx-Oc-VJP" userLabel="Bar Button Item - Email">
+                                        <connections>
+                                            <action selector="shareImage:" destination="vXZ-lx-hvc" id="MDX-5p-6cV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ILd-nr-Hcz" firstAttribute="top" secondItem="Tx8-8g-LW7" secondAttribute="bottom" constant="24" id="7cl-Xw-Dq1"/>
-                            <constraint firstItem="1iq-I3-qBg" firstAttribute="top" secondItem="ILd-nr-Hcz" secondAttribute="bottom" constant="24" id="oyV-NJ-O3m"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="createMagicButton" destination="1iq-I3-qBg" id="dee-G1-p0O"/>
@@ -120,6 +139,11 @@
             <point key="canvasLocation" x="696" y="70"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Email_Circle" width="25" height="25"/>
+        <image name="Facebook" width="25" height="25"/>
+        <image name="Twitter" width="25" height="25"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

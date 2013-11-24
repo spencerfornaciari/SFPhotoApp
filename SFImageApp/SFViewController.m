@@ -276,4 +276,40 @@
     
 }
 
+-(IBAction)shareImage:(UIBarButtonItem *)sender
+{
+    SLComposeViewController *shareViewController;
+    MFMailComposeViewController *mailViewController;
+    
+    switch (sender.tag) {
+        case 0:
+            shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            [shareViewController setInitialText:@"Fun with cats"];
+            [shareViewController addImage: self.imageView.image];
+            [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
+            [self presentViewController:shareViewController animated:YES completion:nil];
+            break;
+            
+        case 1:
+            shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [shareViewController setInitialText:@"Fun with cats"];
+            [shareViewController addImage: self.imageView.image];
+            [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
+            [self presentViewController:shareViewController animated:YES completion:nil];
+            
+        case 2:
+            mailViewController = [[MFMailComposeViewController alloc] init];
+            mailViewController.mailComposeDelegate = self;
+            [mailViewController setSubject:@"Subject Goes Here."];
+            
+            //Adding the photo to the email
+            NSData *sendImage = UIImageJPEGRepresentation(self.imageView.image, 0.0);
+            [mailViewController addAttachmentData:sendImage mimeType:@"image/jpeg" fileName:@"SFImageApp Image"];
+            
+            [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
+            [self presentViewController:mailViewController animated:YES completion:nil];
+            
+    }
+}
+
 @end
