@@ -35,8 +35,6 @@
     self.createMagicButton.backgroundColor = [UIColor redColor];
     self.createMagicButton.layer.cornerRadius = 5.f;
     
-   
-    
 } 
 
 - (void)didReceiveMemoryWarning
@@ -304,7 +302,7 @@
             
             //Adding the photo to the email
             NSData *sendImage = UIImageJPEGRepresentation(self.imageView.image, 0.0);
-            [mailViewController addAttachmentData:sendImage mimeType:@"image/jpeg" fileName:@"SFImageApp Image"];
+            [mailViewController addAttachmentData:sendImage mimeType:@"image/jpeg" fileName:@"SFImageAppImage.jpg"];
             
             [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
             [self presentViewController:mailViewController animated:YES completion:nil];

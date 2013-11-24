@@ -43,4 +43,58 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([[url scheme] isEqualToString:@"sfia"]) {
+        
+        self.importImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+        
+
+//        ToDoItem *item = [[ToDoItem alloc] init];
+//        NSString *taskName = [url query];
+//        if (!taskName || ![self isValidTaskString:taskName]) { // must have a task name
+//            return NO;
+//        }
+//        taskName = [taskName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        
+//        item.toDoTask = taskName;
+//        NSString *dateString = [url fragment];
+//        if (!dateString || [dateString isEqualToString:@"today"]) {
+//            item.dateDue = [NSDate date];
+//        } else {
+//            if (r![self isValidDateString:dateString]) {
+//                return NO;
+//            }
+//            // format: yyyymmddhhmm (24-hour clock)
+//            NSString *curStr = [dateString substringWithRange:NSMakeRange(0, 4)];
+//            NSInteger yeardigit = [curStr integerValue];
+//            curStr = [dateString substringWithRange:NSMakeRange(4, 2)];
+//            NSInteger monthdigit = [curStr integerValue];
+//            curStr = [dateString substringWithRange:NSMakeRange(6, 2)];
+//            NSInteger daydigit = [curStr integerValue];
+//            curStr = [dateString substringWithRange:NSMakeRange(8, 2)];
+//            NSInteger hourdigit = [curStr integerValue];
+//            curStr = [dateString substringWithRange:NSMakeRange(10, 2)];
+//            NSInteger minutedigit = [curStr integerValue];
+//            
+//            NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+//            [dateComps setYear:yeardigit];
+//            [dateComps setMonth:monthdigit];
+//            [dateComps setDay:daydigit];
+//            [dateComps setHour:hourdigit];
+//            [dateComps setMinute:minutedigit];
+//            NSCalendar *calendar = [s[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            NSDate *itemDate = [calendar dateFromComponents:dateComps];
+//            if (!itemDate) {
+//                return NO;
+//            }
+//            item.dateDue = itemDate;
+//        }
+//        
+//        [(NSMutableArray *)self.list addObject:item];
+//        return YES;
+    }
+    return NO;
+}
+
 @end
