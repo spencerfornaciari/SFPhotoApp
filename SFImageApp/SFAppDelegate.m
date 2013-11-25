@@ -7,12 +7,22 @@
 //
 
 #import "SFAppDelegate.h"
+#import "SFViewController.h"
 
 @implementation SFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+
+    [FBLoginView class];
+    
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        // To-do, show logged in view
+    } else {
+        // No, display the login page.
+     //   [self showLoginView];
+    }
     return YES;
 }
 							
@@ -47,54 +57,34 @@
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     if ([[url scheme] isEqualToString:@"sfia"]) {
         
-        self.importImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+       
+        NSString *newURL = [NSString stringWithFormat:@"http://%@%@", [url host], [url path]];
+        NSLog(@"%@", newURL);
         
-
-//        ToDoItem *item = [[ToDoItem alloc] init];
-//        NSString *taskName = [url query];
-//        if (!taskName || ![self isValidTaskString:taskName]) { // must have a task name
-//            return NO;
-//        }
-//        taskName = [taskName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        
-//        item.toDoTask = taskName;
-//        NSString *dateString = [url fragment];
-//        if (!dateString || [dateString isEqualToString:@"today"]) {
-//            item.dateDue = [NSDate date];
-//        } else {
-//            if (r![self isValidDateString:dateString]) {
-//                return NO;
-//            }
-//            // format: yyyymmddhhmm (24-hour clock)
-//            NSString *curStr = [dateString substringWithRange:NSMakeRange(0, 4)];
-//            NSInteger yeardigit = [curStr integerValue];
-//            curStr = [dateString substringWithRange:NSMakeRange(4, 2)];
-//            NSInteger monthdigit = [curStr integerValue];
-//            curStr = [dateString substringWithRange:NSMakeRange(6, 2)];
-//            NSInteger daydigit = [curStr integerValue];
-//            curStr = [dateString substringWithRange:NSMakeRange(8, 2)];
-//            NSInteger hourdigit = [curStr integerValue];
-//            curStr = [dateString substringWithRange:NSMakeRange(10, 2)];
-//            NSInteger minutedigit = [curStr integerValue];
-//            
-//            NSDateComponents *dateComps = [[NSDateComponents alloc] init];
-//            [dateComps setYear:yeardigit];
-//            [dateComps setMonth:monthdigit];
-//            [dateComps setDay:daydigit];
-//            [dateComps setHour:hourdigit];
-//            [dateComps setMinute:minutedigit];
-//            NSCalendar *calendar = [s[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//            NSDate *itemDate = [calendar dateFromComponents:dateComps];
-//            if (!itemDate) {
-//                return NO;
-//            }
-//            item.dateDue = itemDate;
-//        }
-//        
-//        [(NSMutableArray *)self.list addObject:item];
-//        return YES;
+        //NSURL *imageURL = [NSURL URLWithString:newURL];
+        //NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        //self.importImage = [UIImage imageWithData:imageData];
+        
     }
-    return NO;
+    
+////    if ([[url scheme] isEqualToString:@"fb1432755893606404"])
+//    return [FBAppCall handleOpenURL:url
+//                  sourceApplication:sourceApplication
+//                    fallbackHandler:^(FBAppCall *call) {
+//                        NSLog(@"In fallback handler");
+//                    }];
+   return YES;
 }
+
+//- (void)showLoginView
+//{
+//    SFViewController *viewController = [[SFViewController alloc] init];
+//    [self presentViewController:viewController animated:YES completion:nil];
+//    //    UIViewController *topViewController = [self.navController topViewController];
+//    //
+//    //    SCLoginViewController* loginViewController =
+//    //    [[SCLoginViewController alloc]initWithNibName:@"SCLoginViewController" bundle:nil];
+//    //    [topViewController presentViewController:loginViewController animated:NO completion:nil];
+//}
 
 @end

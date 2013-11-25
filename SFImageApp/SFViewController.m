@@ -35,7 +35,15 @@
     self.createMagicButton.backgroundColor = [UIColor redColor];
     self.createMagicButton.layer.cornerRadius = 5.f;
     
-} 
+    
+    
+//    appDel = [[UIApplication sharedApplication]delegate];
+//    
+//    if (appDel.importImage)
+//    {
+//        self.imageView.image = appDel.importImage;
+//    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -298,7 +306,7 @@
         case 2:
             mailViewController = [[MFMailComposeViewController alloc] init];
             mailViewController.mailComposeDelegate = self;
-            [mailViewController setSubject:@"Subject Goes Here."];
+            [mailViewController setSubject:@"Fun with cats"];
             
             //Adding the photo to the email
             NSData *sendImage = UIImageJPEGRepresentation(self.imageView.image, 0.0);
@@ -308,6 +316,10 @@
             [self presentViewController:mailViewController animated:YES completion:nil];
             
     }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

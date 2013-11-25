@@ -21,6 +21,8 @@
 		891A5AEE1829CABB00A0B8D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 891A5AEC1829CABB00A0B8D3 /* InfoPlist.strings */; };
 		891A5AF01829CABB00A0B8D3 /* SFImageAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */; };
 		892FC8DA1841A169009C8857 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892FC8D91841A169009C8857 /* Social.framework */; };
+		892FC8DE1842C335009C8857 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892FC8DD1842C335009C8857 /* FacebookSDK.framework */; };
+		89B8DC611842D1F600EAB8F0 /* SFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B8DC601842D1F600EAB8F0 /* SFLoginViewController.m */; };
 		89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */; };
 		89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */; };
 		89DBFCFD182B6ED1005BA757 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DBFCFC182B6ED1005BA757 /* crosshair.png */; };
@@ -57,6 +59,9 @@
 		891A5AED1829CABB00A0B8D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		891A5AEF1829CABB00A0B8D3 /* SFImageAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFImageAppTests.m; sourceTree = "<group>"; };
 		892FC8D91841A169009C8857 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		892FC8DD1842C335009C8857 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		89B8DC5F1842D1F600EAB8F0 /* SFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFLoginViewController.h; path = ../SFLoginViewController.h; sourceTree = "<group>"; };
+		89B8DC601842D1F600EAB8F0 /* SFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFLoginViewController.m; path = ../SFLoginViewController.m; sourceTree = "<group>"; };
 		89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFEditImageViewController.h; sourceTree = "<group>"; };
 		89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFEditImageViewController.m; sourceTree = "<group>"; };
 		89DBFCF7182B6CC9005BA757 /* SFOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOverlayView.h; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				892FC8DA1841A169009C8857 /* Social.framework in Frameworks */,
+				892FC8DE1842C335009C8857 /* FacebookSDK.framework in Frameworks */,
 				891A5AC71829CABB00A0B8D3 /* CoreGraphics.framework in Frameworks */,
 				891A5AC91829CABB00A0B8D3 /* UIKit.framework in Frameworks */,
 				891A5AC51829CABB00A0B8D3 /* Foundation.framework in Frameworks */,
@@ -112,6 +118,7 @@
 		891A5AC31829CABB00A0B8D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				892FC8DD1842C335009C8857 /* FacebookSDK.framework */,
 				892FC8D91841A169009C8857 /* Social.framework */,
 				891A5AC41829CABB00A0B8D3 /* Foundation.framework */,
 				891A5AC61829CABB00A0B8D3 /* CoreGraphics.framework */,
@@ -124,6 +131,8 @@
 		891A5ACA1829CABB00A0B8D3 /* SFImageApp */ = {
 			isa = PBXGroup;
 			children = (
+				89B8DC5F1842D1F600EAB8F0 /* SFLoginViewController.h */,
+				89B8DC601842D1F600EAB8F0 /* SFLoginViewController.m */,
 				89DBFCFE182BA676005BA757 /* Main.storyboard */,
 				89DBFCFC182B6ED1005BA757 /* crosshair.png */,
 				891A5AD31829CABB00A0B8D3 /* SFAppDelegate.h */,
@@ -271,6 +280,7 @@
 				891A5AD11829CABB00A0B8D3 /* main.m in Sources */,
 				891A5ADB1829CABB00A0B8D3 /* SFViewController.m in Sources */,
 				891A5AD51829CABB00A0B8D3 /* SFAppDelegate.m in Sources */,
+				89B8DC611842D1F600EAB8F0 /* SFLoginViewController.m in Sources */,
 				89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */,
 				89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */,
 			);
@@ -391,6 +401,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/spencerfornaciari/Dropbox/Developer/SFImageApp,
+					/Users/spencerfornaciari/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SFImageApp/SFImageApp-Prefix.pch";
 				INFOPLIST_FILE = "SFImageApp/SFImageApp-Info.plist";
@@ -404,6 +419,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/spencerfornaciari/Dropbox/Developer/SFImageApp,
+					/Users/spencerfornaciari/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SFImageApp/SFImageApp-Prefix.pch";
 				INFOPLIST_FILE = "SFImageApp/SFImageApp-Info.plist";

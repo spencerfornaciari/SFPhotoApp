@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFAppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "SFEditImageViewController.h"
@@ -16,6 +17,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate, MFMailComposeViewControllerDelegate>
+
 
 @property (strong, nonatomic) UIImage *originalImage;
 @property (nonatomic) id delegate;

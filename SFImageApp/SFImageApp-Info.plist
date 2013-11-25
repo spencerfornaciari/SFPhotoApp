@@ -31,6 +31,7 @@
 			<string>in.macguff.SFImageApp</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb1432755893606404</string>
 				<string>sfia</string>
 			</array>
 		</dict>
@@ -45,6 +46,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>FacebookAppID</key>
+	<string>1432755893606404</string>
+	<key>FacebookDisplayName</key>
+	<string>SFImageApp</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
