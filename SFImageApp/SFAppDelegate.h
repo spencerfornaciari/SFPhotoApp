@@ -13,8 +13,7 @@
 
 @interface SFAppDelegate : UIResponder <UIApplicationDelegate>
 
-
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIImage *importImage;
+@property (strong, nonatomic) NSURL *customURL;
 
 @end

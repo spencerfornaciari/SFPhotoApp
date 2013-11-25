@@ -53,9 +53,9 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    NSLog(@"User ID: %@", user.id);
-    NSLog(@"User ID: %@", user.first_name);
-    NSLog(@"User ID: %@", user.last_name);
+//    NSLog(@"User ID: %@", user.id);
+//    NSLog(@"User ID: %@", user.first_name);
+//    NSLog(@"User ID: %@", user.last_name);
 
     // here we use helper properties of FBGraphUser to dot-through to first_name and
     // id properties of the json response from the server; alternatively we could use
@@ -68,7 +68,7 @@
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    NSLog(@"%@", loginView);
+    //NSLog(@"%@", loginView);
     [self performSegueWithIdentifier:@"login" sender:self];
     //SFViewController *viewController = [[SFViewController alloc] init];
     //[self presentViewController:viewController animated:YES completion:nil];

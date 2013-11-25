@@ -31,18 +31,26 @@
     
     self.filterSegmentedButtons.tintColor = [UIColor redColor];
     
-    //Initial setup of the Magic Button
-    self.createMagicButton.backgroundColor = [UIColor redColor];
-    self.createMagicButton.layer.cornerRadius = 5.f;
     
-    
-
 //    appDel = [[UIApplication sharedApplication]delegate];
 //    
 //    if (appDel.importImage)
 //    {
 //        self.imageView.image = appDel.importImage;
 //    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    SFAppDelegate *appDelegate = (SFAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSData *data = [NSData dataWithContentsOfURL:appDelegate.customURL];
+    UIImage *image = [UIImage imageWithData:data];
+    
+    self.imageView.image = image;
+    
+    NSLog(@"Singleton: %@", appDelegate.customURL);
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -314,6 +322,7 @@
                 if (!error)
                 {
                     NSLog(@"Successfully updated status");
+                    NSLog(@"Hello world");
                 }
                 else
                 {
@@ -321,6 +330,8 @@
                 }
                 
             }];
+            
+            
 
             break;
             
@@ -363,6 +374,12 @@
 {
     [FBSession.activeSession closeAndClearTokenInformation];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)photoPostSuccess
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Your image has been posted" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 @end

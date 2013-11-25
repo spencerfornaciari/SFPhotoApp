@@ -63,11 +63,12 @@
         
        
         NSString *newURL = [NSString stringWithFormat:@"http://%@%@", [url host], [url path]];
-        NSLog(@"%@", newURL);
+        self.customURL = [NSURL URLWithString:newURL];
         
-        //NSURL *imageURL = [NSURL URLWithString:newURL];
-        //NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        //self.importImage = [UIImage imageWithData:imageData];
+        if (self.customURL)
+        {
+            NSLog(@"App Delegate: %@", self.customURL);
+        }
         return YES;
     }
     

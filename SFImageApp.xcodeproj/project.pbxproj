@@ -23,6 +23,7 @@
 		892FC8DA1841A169009C8857 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892FC8D91841A169009C8857 /* Social.framework */; };
 		892FC8DE1842C335009C8857 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892FC8DD1842C335009C8857 /* FacebookSDK.framework */; };
 		89B8DC611842D1F600EAB8F0 /* SFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B8DC601842D1F600EAB8F0 /* SFLoginViewController.m */; };
+		89B8DC6A1843F4D200EAB8F0 /* SFSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B8DC691843F4D200EAB8F0 /* SFSingleton.m */; };
 		89DBFCF6182B610B005BA757 /* SFEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */; };
 		89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */; };
 		89DBFCFD182B6ED1005BA757 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DBFCFC182B6ED1005BA757 /* crosshair.png */; };
@@ -62,6 +63,8 @@
 		892FC8DD1842C335009C8857 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		89B8DC5F1842D1F600EAB8F0 /* SFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFLoginViewController.h; path = ../SFLoginViewController.h; sourceTree = "<group>"; };
 		89B8DC601842D1F600EAB8F0 /* SFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFLoginViewController.m; path = ../SFLoginViewController.m; sourceTree = "<group>"; };
+		89B8DC681843F4D200EAB8F0 /* SFSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFSingleton.h; sourceTree = "<group>"; };
+		89B8DC691843F4D200EAB8F0 /* SFSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFSingleton.m; sourceTree = "<group>"; };
 		89DBFCF4182B610B005BA757 /* SFEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFEditImageViewController.h; sourceTree = "<group>"; };
 		89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFEditImageViewController.m; sourceTree = "<group>"; };
 		89DBFCF7182B6CC9005BA757 /* SFOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOverlayView.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				89DBFCF5182B610B005BA757 /* SFEditImageViewController.m */,
 				89DBFCF7182B6CC9005BA757 /* SFOverlayView.h */,
 				89DBFCF8182B6CC9005BA757 /* SFOverlayView.m */,
+				89B8DC681843F4D200EAB8F0 /* SFSingleton.h */,
+				89B8DC691843F4D200EAB8F0 /* SFSingleton.m */,
 			);
 			path = SFImageApp;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 			files = (
 				891A5AD11829CABB00A0B8D3 /* main.m in Sources */,
 				891A5ADB1829CABB00A0B8D3 /* SFViewController.m in Sources */,
+				89B8DC6A1843F4D200EAB8F0 /* SFSingleton.m in Sources */,
 				891A5AD51829CABB00A0B8D3 /* SFAppDelegate.m in Sources */,
 				89B8DC611842D1F600EAB8F0 /* SFLoginViewController.m in Sources */,
 				89DBFCF9182B6CC9005BA757 /* SFOverlayView.m in Sources */,
