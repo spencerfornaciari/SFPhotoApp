@@ -17,12 +17,6 @@
 
     [FBLoginView class];
     
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        // To-do, show logged in view
-    } else {
-        // No, display the login page.
-     //   [self showLoginView];
-    }
     return YES;
 }
 							
@@ -45,11 +39,21 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    // FBSample logic
+    // Call the 'activateApp' method to log an app event for use in analytics and advertising reporting.
+    [FBAppEvents activateApp];
+    
+    // FBSample logic
+    // We need to properly handle activation of the application with regards to SSO
+    //  (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
+    [FBAppCall handleDidBecomeActive];
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [FBSession.activeSession close];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -64,16 +68,19 @@
         //NSURL *imageURL = [NSURL URLWithString:newURL];
         //NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         //self.importImage = [UIImage imageWithData:imageData];
-        
+        return YES;
     }
     
-////    if ([[url scheme] isEqualToString:@"fb1432755893606404"])
-//    return [FBAppCall handleOpenURL:url
-//                  sourceApplication:sourceApplication
-//                    fallbackHandler:^(FBAppCall *call) {
-//                        NSLog(@"In fallback handler");
-//                    }];
-   return YES;
+    if ([[url scheme] isEqualToString:@"fb1432755893606404"])
+    {
+        return [FBAppCall handleOpenURL:url
+                      sourceApplication:sourceApplication
+                        fallbackHandler:^(FBAppCall *call) {
+                            NSLog(@"In fallback handler");
+                        }];
+    }
+    
+   return NO;
 }
 
 //- (void)showLoginView

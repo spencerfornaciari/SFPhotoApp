@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface SFLoginViewController : UIViewController <FBLoginViewDelegate>
+@interface SFLoginViewController : UIViewController
+
+-(IBAction)facebookPost:(id)sender;
 
 @end

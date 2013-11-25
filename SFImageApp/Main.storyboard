@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="QXf-2T-tVG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -15,8 +15,23 @@
                     <view key="view" contentMode="scaleToFill" id="7zo-mL-Oc5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9J-kz-ZJl">
+                                <rect key="frame" x="137" y="225" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookPost:" destination="QXf-2T-tVG" eventType="touchUpInside" id="qdD-Ho-BjE"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="login" id="PZB-88-fof"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3L-Qq-xbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,9 +78,12 @@
                                     <action selector="filterViewSegmentController:" destination="vXZ-lx-hvc" eventType="valueChanged" id="5Is-qH-GWP"/>
                                 </connections>
                             </segmentedControl>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Vp-Zn-sBP">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vp-Zn-sBP">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="WDs-F1-6nM"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem image="Facebook" id="Crh-K0-Dci" userLabel="Bar Button Item - Facebook">
                                         <connections>
@@ -88,6 +106,10 @@
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5Vp-Zn-sBP" secondAttribute="bottom" id="2l6-7d-ysI"/>
+                            <constraint firstItem="5Vp-Zn-sBP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ZaU-hn-Aup"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="createMagicButton" destination="1iq-I3-qBg" id="dee-G1-p0O"/>

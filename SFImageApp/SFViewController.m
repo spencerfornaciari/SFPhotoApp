@@ -166,8 +166,9 @@
             
             else
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No photo selected" message:@"Please pick a photo" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
-                [alertView show];
+//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No photo selected" message:@"Please pick a photo" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+//                [alertView show];
+                [self noPhotoSelected];
             }
             
             
@@ -287,13 +288,40 @@
     SLComposeViewController *shareViewController;
     MFMailComposeViewController *mailViewController;
     
+    if (self.imageView.image) {
     switch (sender.tag) {
         case 0:
-            shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-            [shareViewController setInitialText:@"Fun with cats"];
-            [shareViewController addImage: self.imageView.image];
-            [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
-            [self presentViewController:shareViewController animated:YES completion:nil];
+//            shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+//            [shareViewController setInitialText:@"Fun with cats"];
+//            [shareViewController addImage: self.imageView.image];
+//            [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
+//            [self presentViewController:shareViewController animated:YES completion:nil];
+//            [FBRequestConnection startForPostStatusUpdate: @"Fun with cats" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+//                
+//                if (!error)
+//                {
+//                    NSLog(@"Successfully updated status");
+//                }
+//                else
+//                {
+//                    NSLog(@"Error: %@", error.localizedDescription);
+//                }
+//                
+//            }];
+            
+            [FBRequestConnection startForUploadPhoto:self.imageView.image completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                
+                if (!error)
+                {
+                    NSLog(@"Successfully updated status");
+                }
+                else
+                {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+                
+            }];
+
             break;
             
         case 1:
@@ -316,10 +344,19 @@
             [self presentViewController:mailViewController animated:YES completion:nil];
             
     }
+    } else {
+        [self noPhotoSelected];
+    }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)noPhotoSelected
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No photo selected" message:@"Please pick a photo" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 @end
