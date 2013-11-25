@@ -36,7 +36,7 @@
     self.createMagicButton.layer.cornerRadius = 5.f;
     
     
-    
+
 //    appDel = [[UIApplication sharedApplication]delegate];
 //    
 //    if (appDel.importImage)
@@ -357,6 +357,12 @@
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No photo selected" message:@"Please pick a photo" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
     [alertView show];
+}
+
+-(void)logoutButtonWasPressed
+{
+    [FBSession.activeSession closeAndClearTokenInformation];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

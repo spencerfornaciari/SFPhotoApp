@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *createMagicButton;
 
 
+- (IBAction)logoutButtonWasPressed;
 - (IBAction)filterViewSegmentController:(id)sender;
 - (IBAction)showUIActionSheet:(id)sender;
 - (IBAction)shareImage:(UIBarButtonItem *)sender;

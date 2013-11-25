@@ -11,6 +11,4 @@
 
 @interface SFLoginViewController : UIViewController
 
--(IBAction)facebookPost:(id)sender;
-
 @end
