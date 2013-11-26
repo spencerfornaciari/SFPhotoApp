@@ -31,13 +31,6 @@
     
     self.filterSegmentedButtons.tintColor = [UIColor redColor];
     
-    
-//    appDel = [[UIApplication sharedApplication]delegate];
-//    
-//    if (appDel.importImage)
-//    {
-//        self.imageView.image = appDel.importImage;
-//    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -45,9 +38,7 @@
     SFAppDelegate *appDelegate = (SFAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSData *data = [NSData dataWithContentsOfURL:appDelegate.customURL];
-    UIImage *image = [UIImage imageWithData:data];
-    
-    self.imageView.image = image;
+    _tempImage = [UIImage imageWithData:data];
     
     NSLog(@"Singleton: %@", appDelegate.customURL);
 
@@ -68,7 +59,6 @@
                                                               delegate:self
                                                      cancelButtonTitle:@"Cancel"
                                                 destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Album", @"Save Image", nil];
-
     
     [imageOptions showInView:self.view];
 
@@ -87,7 +77,7 @@
 
 -(void)applyFilterToImage:(UIImage *)image
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 320)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 61, 320, 320)];
     [imageView setImage:image];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     
@@ -304,25 +294,13 @@
 //            [shareViewController addImage: self.imageView.image];
 //            [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
 //            [self presentViewController:shareViewController animated:YES completion:nil];
-//            [FBRequestConnection startForPostStatusUpdate: @"Fun with cats" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-//                
-//                if (!error)
-//                {
-//                    NSLog(@"Successfully updated status");
-//                }
-//                else
-//                {
-//                    NSLog(@"Error: %@", error.localizedDescription);
-//                }
-//                
-//            }];
             
             [FBRequestConnection startForUploadPhoto:self.imageView.image completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                 
                 if (!error)
                 {
                     NSLog(@"Successfully updated status");
-                    NSLog(@"Hello world");
+                    //[self photoPostSuccess];
                 }
                 else
                 {
@@ -342,6 +320,8 @@
             [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
             [self presentViewController:shareViewController animated:YES completion:nil];
             
+            break;
+            
         case 2:
             mailViewController = [[MFMailComposeViewController alloc] init];
             mailViewController.mailComposeDelegate = self;
@@ -353,6 +333,8 @@
             
             [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
             [self presentViewController:mailViewController animated:YES completion:nil];
+            
+            break;
             
     }
     } else {
@@ -381,5 +363,6 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Your image has been posted" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
     [alertView show];
 }
+
 
 @end
