@@ -22,7 +22,6 @@
 @property (strong, nonatomic) UIImage *originalImage;
 @property (nonatomic) id delegate;
 
-
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *filterSegmentedButtons;
 @property (strong, nonatomic) IBOutlet UIButton *createMagicButton;

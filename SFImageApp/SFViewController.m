@@ -31,16 +31,23 @@
     
     self.filterSegmentedButtons.tintColor = [UIColor redColor];
     
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(handleOpenCustomURL) name: @"HandleOpenCustomURLNotificationName" object: nil];
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)handleOpenCustomURL
 {
     SFAppDelegate *appDelegate = (SFAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSData *data = [NSData dataWithContentsOfURL:appDelegate.customURL];
-    _tempImage = [UIImage imageWithData:data];
+    UIImage *incomingImage = [UIImage imageWithData:data];
     
-    NSLog(@"Singleton: %@", appDelegate.customURL);
+    [self applyFilterToImage:incomingImage];
+    
+    NSLog(@"Singleton's URL: %@", appDelegate.customURL);
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
 
 }
 
@@ -281,6 +288,8 @@
     
 }
 
+#pragma mark - Social Sharing
+
 -(IBAction)shareImage:(UIBarButtonItem *)sender
 {
     SLComposeViewController *shareViewController;
@@ -288,7 +297,7 @@
     
     if (self.imageView.image) {
     switch (sender.tag) {
-        case 0:
+        case 0:{
 //            shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
 //            [shareViewController setInitialText:@"Fun with cats"];
 //            [shareViewController addImage: self.imageView.image];
@@ -300,7 +309,7 @@
                 if (!error)
                 {
                     NSLog(@"Successfully updated status");
-                    //[self photoPostSuccess];
+                    [self photoPostSuccess];
                 }
                 else
                 {
@@ -310,19 +319,19 @@
             }];
             
             
-
+        }
             break;
             
-        case 1:
+        case 1:{
             shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
             [shareViewController setInitialText:@"Fun with cats"];
             [shareViewController addImage: self.imageView.image];
             [shareViewController addURL:[NSURL URLWithString:@"http://facebook.com/mydemoapp"]];
             [self presentViewController:shareViewController animated:YES completion:nil];
-            
+        }
             break;
             
-        case 2:
+        case 2:{
             mailViewController = [[MFMailComposeViewController alloc] init];
             mailViewController.mailComposeDelegate = self;
             [mailViewController setSubject:@"Fun with cats"];
@@ -333,7 +342,7 @@
             
             [mailViewController setMessageBody:@"Your message goes here." isHTML:NO];
             [self presentViewController:mailViewController animated:YES completion:nil];
-            
+        }
             break;
             
     }
@@ -346,11 +355,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Photo not selected warning
+
 -(void)noPhotoSelected
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No photo selected" message:@"Please pick a photo" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
     [alertView show];
 }
+
+#pragma mark - Facebook support methods
 
 -(void)logoutButtonWasPressed
 {

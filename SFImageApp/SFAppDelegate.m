@@ -61,13 +61,16 @@
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     if ([[url scheme] isEqualToString:@"sfia"]) {
         
-       
-        NSString *newURL = [NSString stringWithFormat:@"http://%@%@", [url host], [url path]];
-        self.customURL = [NSURL URLWithString:newURL];
+        NSString *incomingURL = [NSString stringWithFormat:@"http://%@%@", [url host], [url path]];
+        self.customURL = [NSURL URLWithString:incomingURL];
         
         if (self.customURL)
         {
             NSLog(@"App Delegate: %@", self.customURL);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Here is your incoming URL" message:incomingURL delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+            [alertView show];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName: @"HandleOpenCustomURLNotificationName" object: nil];
         }
         return YES;
     }
