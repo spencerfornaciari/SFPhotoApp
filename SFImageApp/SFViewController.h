@@ -15,6 +15,7 @@
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface SFViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, SFEditImageViewControllerDelegate, MFMailComposeViewControllerDelegate>
 

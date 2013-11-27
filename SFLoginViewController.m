@@ -69,7 +69,8 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     //NSLog(@"%@", loginView);
-    [self performSegueWithIdentifier:@"login" sender:self];
+    //[self performSegueWithIdentifier:@"login" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
     //SFViewController *viewController = [[SFViewController alloc] init];
     //[self presentViewController:viewController animated:YES completion:nil];
 }

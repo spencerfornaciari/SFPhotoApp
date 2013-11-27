@@ -15,6 +15,7 @@
 @implementation SFViewController
 {
     UIImage *_tempImage;
+    UIImageView *_tempImageview;
 }
 
 - (void)viewDidLoad
@@ -27,6 +28,9 @@
     {
         self.filterSegmentedButtons.enabled = NO;
         self.filterSegmentedButtons.selectedSegmentIndex = 3;
+        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 61, 320, 320)];
+        [self.imageView setContentMode: UIViewContentModeScaleAspectFill];
+        [self.view addSubview:self.imageView];
     }
     
     self.filterSegmentedButtons.tintColor = [UIColor redColor];
@@ -49,6 +53,19 @@
 -(void)viewWillAppear:(BOOL)animated
 {
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+        if (FBSession.activeSession.isOpen == YES)
+        {
+            NSLog(@"You are logged in");
+        } else if (FBSession.activeSession.isOpen ==  NO){
+    //        //SFLoginViewController *loginViewController = [[SFLoginViewController alloc] init];
+    //        //[self presentViewController:loginViewController animated:YES completion:nil];
+            [self performSegueWithIdentifier:@"login" sender:self];
+    //
+        }
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,13 +101,16 @@
 
 -(void)applyFilterToImage:(UIImage *)image
 {
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 61, 320, 320)];
-    [imageView setImage:image];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 61, 320, 320)];
+//    [imageView setImage:image];
+//    imageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    self.imageView = imageView;
-    self.originalImage = imageView.image;
-    [self.view addSubview:imageView];
+    [self.imageView setImage:image];
+    self.originalImage = self.imageView.image;
+
+    
+    //self.imageView = imageView;
+   // [self.view addSubview:imageView];
 }
 
 
@@ -368,7 +388,8 @@
 -(void)logoutButtonWasPressed
 {
     [FBSession.activeSession closeAndClearTokenInformation];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self performSegueWithIdentifier:@"login" sender:self];
 }
 
 -(void)photoPostSuccess
